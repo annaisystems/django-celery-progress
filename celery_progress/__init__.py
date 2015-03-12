@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.utils.module_loading import import_by_path
 
-BACKEND = getattr(settings, 'CELERY_PROGRESS_BACKEND',
+BACKEND = getattr(settings.configure(), 'CELERY_PROGRESS_BACKEND',
                   'celery_progress.backends.CeleryBackend')
 
 
