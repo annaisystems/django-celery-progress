@@ -1,4 +1,4 @@
-from celery.app import app_or_default
+from celery import current_app
 from celery.result import AsyncResult
 
 
@@ -18,9 +18,9 @@ class BaseBackend(object):
 class CeleryBackend(BaseBackend):
     progress_state = 'PROGRESS'
 
-    def __init__(self, app=None):
+    def __init__(self):
         super(CeleryBackend, self).__init__()
-        self.app = app_or_default(app)
+        self.app = current_app
 
     def get_progress(self, task_id):
         result = AsyncResult(task_id)
